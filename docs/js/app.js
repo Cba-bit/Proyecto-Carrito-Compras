@@ -20,6 +20,13 @@ function cargarEventListener() {
 
     limpiarHTML(); // Eliminamos todo el HTML
   })
+
+  // Sincronizar Storage
+  document.addEventListener("DOMContentLoaded", () => {
+    articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+
+    carritoHTML();
+  })
 }
 
 
@@ -113,6 +120,14 @@ function carritoHTML() {
     // Agrega el HTML del carrito en el body
     contenedorCarrito.appendChild(row)
   })
+
+  // Agregar el carrito de compras al storage
+  sincronizarStorage();
+}
+
+// Sincroniza storage
+function sincronizarStorage() {
+  localStorage.setItem("carrito", JSON.stringify(articulosCarrito))
 }
 
 
